@@ -35,8 +35,8 @@ public class Events implements Listener {
             mob_bonus += killer.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
         }
         for(MobDrop mobDrop : mobsManager.getMobs().get(entityType.toLowerCase())) {
-            int random = RandomNumber.randomInt(0, 1000000);
-            int number = mobDrop.getPercentage() * 10000 * mob_bonus;
+            int random = RandomNumber.randomInt(1, 1000000);
+            double number = mobDrop.getPercentage() * 10000 * mob_bonus;
             if(random > number) continue;
             ItemStack itemStack = mobDrop.getCustomItem().getItemStack();
             itemStack.setAmount(RandomNumber.randomInt(mobDrop.getCountMin(), mobDrop.getCountMax()));

@@ -24,6 +24,7 @@ public class CommandHelper implements TabCompleter {
         }
         List<String> completions = new ArrayList<>();
         if(args.length == 1) {
+            completions.add("reload");
             completions.add("giveitem");
             completions.add("items");
             completions.add("mobs");

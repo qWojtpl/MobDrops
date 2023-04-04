@@ -73,7 +73,7 @@ public class DataHandler {
             List<MobDrop> dropList = new ArrayList<>();
             for(String drops : section1.getKeys(false)) {
                 String itemID = yml.getString("mobs." + mob + "." + drops + ".itemID");
-                int percentage = yml.getInt("mobs." + mob + "." + drops + ".percentage");
+                double percentage = yml.getDouble("mobs." + mob + "." + drops + ".percentage");
                 int countMin = yml.getInt("mobs." + mob + "." + drops + ".countMin");
                 int countMax = yml.getInt("mobs." + mob + "." + drops + ".countMax");
                 boolean firework = yml.getBoolean("mobs." + mob + "." + drops + ".firework");
