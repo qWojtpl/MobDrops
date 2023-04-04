@@ -1,0 +1,13 @@
+items:
+  "diamond":
+    item: DIAMOND
+    name: "Super diamond!"
+    lore: "Diamond dropped from a mob"
+    enchantments:
+      - DIG_SPEED:3
+    unbreakable: false
+  "emerald":
+    item: EMERALD
+    name: "Super emerald!"
+    lore: "Emerald dropped from a mob"
+    unbreakable: true

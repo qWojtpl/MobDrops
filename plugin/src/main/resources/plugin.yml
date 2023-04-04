@@ -1,0 +1,10 @@
+name: MobDrops
+version: '${project.version}'
+main: pl.mobdrops.MobDrops
+api-version: 1.19
+authors: [Assasin98980]
+description: Add custom mob drops to your Minecraft server
+commands:
+  mobdrops:
+    usage: /<command>
+    description: Manage MobDrops plugin

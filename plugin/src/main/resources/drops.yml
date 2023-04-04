@@ -1,0 +1,16 @@
+drops:
+  "zombie":
+    0:
+      itemID: "diamond"
+      percentage: 10
+      countMin: 1
+      countMax: 1
+      firework: true
+      fireworkColor: "blue"
+    1:
+      itemID: "emerald"
+      countMin: 1
+      countMax: 5
+      percentage: 5
+      firework: true
+      fireworkColor: "green"
