@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import pl.mobdrops.MobDrops;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,10 +15,17 @@ import java.util.List;
 public class CustomItem {
 
     private final ItemStack itemStack;
+    private final String id;
+    private final Material item;
+    private final String name;
+    private final String lore;
+    private final List<Enchantment> enchantments;
+    private final boolean unbreakable;
 
     public CustomItem(String id, Material item, String name, String lore, List<String> enchantments, boolean unbreakable) {
         this.itemStack = new ItemStack(item);
         ItemMeta itemMeta = this.itemStack.getItemMeta();
+        List<Enchantment> enchantmentList = new ArrayList<>();
         if(name != null) {
             itemMeta.setDisplayName(name.replace("&", "§"));
         }
@@ -40,9 +48,16 @@ public class CustomItem {
                         + " with a correct enchantment! (Reading " + id + ")");
                 ench = Enchantment.DAMAGE_ALL;
             }
+            enchantmentList.add(ench);
             itemMeta.addEnchant(ench, level,true);
         }
         itemMeta.setUnbreakable(unbreakable);
+        this.name = name;
+        this.lore = lore;
+        this.id = id;
+        this.item = item;
+        this.enchantments = enchantmentList;
+        this.unbreakable = unbreakable;
         this.itemStack.setItemMeta(itemMeta);
     }
 

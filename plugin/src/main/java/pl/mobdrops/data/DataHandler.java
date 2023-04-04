@@ -1,24 +1,36 @@
 package pl.mobdrops.data;
 
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.mobdrops.MobDrops;
 import pl.mobdrops.items.CustomItem;
-import pl.mobdrops.items.ItemManager;
+import pl.mobdrops.mobs.MobDrop;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class DataHandler {
 
     private final MobDrops plugin = MobDrops.getInstance();
+    private String prefix;
 
     public void loadConfig() {
         loadItems();
+        loadMobs();
+        File configFile = new File(plugin.getDataFolder(), "config.yml");
+        if(!configFile.exists()) {
+            plugin.saveResource("config.yml", false);
+        }
+        YamlConfiguration yml = YamlConfiguration.loadConfiguration(configFile);
+        prefix = yml.getString("config.prefix");
     }
 
     public void loadItems() {
+        plugin.getItemManager().getItems().clear();
         File itemsFile = new File(plugin.getDataFolder(), "items.yml");
         if(!itemsFile.exists()) {
             plugin.saveResource("items.yml", false);
@@ -43,6 +55,32 @@ public class DataHandler {
             List<String> enchantments = yml.getStringList("items." + key + ".enchantments");
             boolean unbreakable = yml.getBoolean("items." + key + ".unbreakable");
             plugin.getItemManager().getItems().put(key, new CustomItem(key, material, name, lore, enchantments, unbreakable));
+        }
+    }
+
+    public void loadMobs() {
+        plugin.getMobsManager().getMobs().clear();
+        File mobFile = new File(plugin.getDataFolder(), "mobs.yml");
+        if(!mobFile.exists()) {
+            plugin.saveResource("mobs.yml", false);
+        }
+        YamlConfiguration yml = YamlConfiguration.loadConfiguration(mobFile);
+        ConfigurationSection section = yml.getConfigurationSection("mobs");
+        if(section == null) return;
+        for(String mob : section.getKeys(false)) {
+            ConfigurationSection section1 = yml.getConfigurationSection("mobs." + mob);
+            if(section1 == null) continue;
+            List<MobDrop> dropList = new ArrayList<>();
+            for(String drops : section1.getKeys(false)) {
+                String itemID = yml.getString("mobs." + mob + "." + drops + ".itemID");
+                int percentage = yml.getInt("mobs." + mob + "." + drops + ".percentage");
+                int countMin = yml.getInt("mobs." + mob + "." + drops + ".countMin");
+                int countMax = yml.getInt("mobs." + mob + "." + drops + ".countMax");
+                boolean firework = yml.getBoolean("mobs." + mob + "." + drops + ".firework");
+                String fireworkColor = yml.getString("mobs." + mob + "." + drops + ".fireworkColor");
+                dropList.add(new MobDrop(itemID, percentage, countMin, countMax, firework, fireworkColor));
+            }
+            plugin.getMobsManager().getMobs().put(mob.toLowerCase(), dropList);
         }
     }
 

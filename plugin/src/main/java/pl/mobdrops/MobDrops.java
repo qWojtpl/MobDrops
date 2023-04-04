@@ -7,6 +7,7 @@ import pl.mobdrops.commands.Commands;
 import pl.mobdrops.data.DataHandler;
 import pl.mobdrops.events.Events;
 import pl.mobdrops.items.ItemManager;
+import pl.mobdrops.mobs.MobsManager;
 import pl.mobdrops.permissions.PermissionManager;
 
 @Getter
@@ -15,6 +16,7 @@ public final class MobDrops extends JavaPlugin {
     private static MobDrops main;
     private PermissionManager permissionManager;
     private ItemManager itemManager;
+    private MobsManager mobsManager;
     private DataHandler dataHandler;
 
     @Override
@@ -22,6 +24,7 @@ public final class MobDrops extends JavaPlugin {
         main = this;
         this.permissionManager = new PermissionManager();
         this.itemManager = new ItemManager();
+        this.mobsManager = new MobsManager();
         this.dataHandler = new DataHandler();
         dataHandler.loadConfig();
         getServer().getPluginManager().registerEvents(new Events(), this);
