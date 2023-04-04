@@ -6,11 +6,17 @@ mobs:
       countMin: 1
       countMax: 1
       firework: true
-      fireworkColor: "blue"
+      fireworkColor:
+        - 0
+        - 0
+        - 255
     1:
       itemID: "emerald"
       countMin: 1
       countMax: 5
       percentage: 5
       firework: true
-      fireworkColor: "green"
+      fireworkColor:
+        - 0
+        - 255
+        - 0

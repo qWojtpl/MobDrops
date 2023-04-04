@@ -4,6 +4,8 @@ import lombok.Getter;
 import pl.mobdrops.MobDrops;
 import pl.mobdrops.items.CustomItem;
 
+import java.util.List;
+
 @Getter
 public class MobDrop {
 
@@ -12,10 +14,10 @@ public class MobDrop {
     private final int countMin;
     private final int countMax;
     private final boolean firework;
-    private final String fireworkColor;
+    private final List<Integer> fireworkColor;
     private final CustomItem customItem;
 
-    public MobDrop(String itemID, int percentage, int countMin, int countMax, boolean firework, String fireworkColor) {
+    public MobDrop(String itemID, int percentage, int countMin, int countMax, boolean firework, List<Integer> fireworkColor) {
         this.itemID = itemID;
         this.percentage = percentage;
         this.countMin = countMin;

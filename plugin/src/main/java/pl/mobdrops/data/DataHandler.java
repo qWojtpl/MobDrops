@@ -77,7 +77,7 @@ public class DataHandler {
                 int countMin = yml.getInt("mobs." + mob + "." + drops + ".countMin");
                 int countMax = yml.getInt("mobs." + mob + "." + drops + ".countMax");
                 boolean firework = yml.getBoolean("mobs." + mob + "." + drops + ".firework");
-                String fireworkColor = yml.getString("mobs." + mob + "." + drops + ".fireworkColor");
+                List<Integer> fireworkColor = yml.getIntegerList("mobs." + mob + "." + drops + ".fireworkColor");
                 dropList.add(new MobDrop(itemID, percentage, countMin, countMax, firework, fireworkColor));
             }
             plugin.getMobsManager().getMobs().put(mob.toLowerCase(), dropList);
