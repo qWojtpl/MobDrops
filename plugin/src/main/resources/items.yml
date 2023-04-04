@@ -11,3 +11,5 @@ items:
     name: "Super emerald!"
     lore: "Emerald dropped from a mob"
     unbreakable: true
+  "command":
+    command: "say %player% is a very serious killer!"

@@ -39,6 +39,10 @@ public class DataHandler {
         ConfigurationSection section = yml.getConfigurationSection("items");
         if(section == null) return;
         for(String key : section.getKeys(false)) {
+            if(yml.getString("items." + key + ".command") != null) {
+                plugin.getItemManager().getItems().put(key, new CustomItem(yml.getString("items." + key + ".command")));
+                continue;
+            }
             String strMaterial = yml.getString("items." + key + ".item");
             if(strMaterial == null) {
                 strMaterial = "dirt";

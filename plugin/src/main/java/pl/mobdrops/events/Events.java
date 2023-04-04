@@ -38,9 +38,17 @@ public class Events implements Listener {
             int random = RandomNumber.randomInt(1, 1000000);
             double number = mobDrop.getPercentage() * 10000 * mob_bonus;
             if(random > number) continue;
-            ItemStack itemStack = mobDrop.getCustomItem().getItemStack();
-            itemStack.setAmount(RandomNumber.randomInt(mobDrop.getCountMin(), mobDrop.getCountMax()));
-            entityLocation.getWorld().dropItem(entityLocation, itemStack);
+            int random_count = RandomNumber.randomInt(mobDrop.getCountMin(), mobDrop.getCountMax());
+            if(mobDrop.getCustomItem().getCommand() != null) {
+                for(int i = 0; i < random_count; i++) {
+                    plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(),
+                            mobDrop.getCustomItem().getCommand().replace("%player%", killer.getName()));
+                }
+            } else {
+                ItemStack itemStack = mobDrop.getCustomItem().getItemStack();
+                itemStack.setAmount(random_count);
+                entityLocation.getWorld().dropItem(entityLocation, itemStack);
+            }
             if(mobDrop.isFirework()) {
                 Firework fw = (Firework) entityLocation.getWorld().spawnEntity(entityLocation, EntityType.FIREWORK);
                 FireworkMeta fwm = fw.getFireworkMeta();

@@ -22,6 +22,7 @@ public class CustomItem {
     private final List<Enchantment> enchantments;
     private final List<String> stringEnchantments;
     private final boolean unbreakable;
+    private final String command;
 
     public CustomItem(String id, Material item, String name, String lore, List<String> enchantments, boolean unbreakable) {
         this.itemStack = new ItemStack(item);
@@ -60,7 +61,20 @@ public class CustomItem {
         this.enchantments = enchantmentList;
         this.stringEnchantments = enchantments;
         this.unbreakable = unbreakable;
+        this.command = null;
         this.itemStack.setItemMeta(itemMeta);
+    }
+
+    public CustomItem(String command) {
+        this.itemStack = null;
+        this.name = null;
+        this.lore = null;
+        this.id = null;
+        this.item = null;
+        this.enchantments = null;
+        this.stringEnchantments = null;
+        this.unbreakable = false;
+        this.command = command;
     }
 
 }

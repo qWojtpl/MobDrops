@@ -55,10 +55,22 @@ public class Commands implements CommandExecutor {
                 for(String key : plugin.getItemManager().getItems().keySet()) {
                     CustomItem ci = plugin.getItemManager().getItems().get(key);
                     sender.sendMessage("§c" + key);
-                    sender.sendMessage(" ├ §7Name §c-> §7" + ci.getName().replace("§", "&"));
-                    sender.sendMessage(" ├ §7Lore §c-> §7" + ci.getLore().replace("§", "&"));
-                    sender.sendMessage(" ├ §7Unbreakable §c-> §7" + ci.isUnbreakable());
-                    sender.sendMessage(" └ §7Enchantments §c-> §7" + ci.getStringEnchantments());
+                    if(ci.getCommand() == null) {
+                        String name = ci.getName();
+                        String lore = ci.getLore();
+                        if(name == null) {
+                            name = "NotSet";
+                        }
+                        if(lore == null) {
+                            lore = "NotSet";
+                        }
+                        sender.sendMessage(" ├ §7Name §c-> §7" + name.replace("§", "&"));
+                        sender.sendMessage(" ├ §7Lore §c-> §7" + lore.replace("§", "&"));
+                        sender.sendMessage(" ├ §7Unbreakable §c-> §7" + ci.isUnbreakable());
+                        sender.sendMessage(" └ §7Enchantments §c-> §7" + ci.getStringEnchantments());
+                    } else {
+                        sender.sendMessage(" └ §7Command: §c-> §7" + ci.getCommand());
+                    }
                 }
                 sender.sendMessage("");
                 sender.sendMessage("§7========== §cMobDrops §7==========");
