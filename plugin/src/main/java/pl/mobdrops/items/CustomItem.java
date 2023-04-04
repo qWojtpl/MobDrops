@@ -20,6 +20,7 @@ public class CustomItem {
     private final String name;
     private final String lore;
     private final List<Enchantment> enchantments;
+    private final List<String> stringEnchantments;
     private final boolean unbreakable;
 
     public CustomItem(String id, Material item, String name, String lore, List<String> enchantments, boolean unbreakable) {
@@ -57,6 +58,7 @@ public class CustomItem {
         this.id = id;
         this.item = item;
         this.enchantments = enchantmentList;
+        this.stringEnchantments = enchantments;
         this.unbreakable = unbreakable;
         this.itemStack.setItemMeta(itemMeta);
     }
