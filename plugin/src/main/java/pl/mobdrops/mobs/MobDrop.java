@@ -16,14 +16,17 @@ public class MobDrop {
     private final int countMax;
     private final boolean firework;
     private final List<Integer> fireworkColor;
+    private final boolean lootBonus;
     private final CustomItem customItem;
 
-    public MobDrop(String itemID, double percentage, int countMin, int countMax, boolean firework, List<Integer> fireworkColor) {
+    public MobDrop(String itemID, double percentage, int countMin, int countMax,
+                   boolean firework, List<Integer> fireworkColor, boolean lootBonus) {
         this.itemID = itemID;
         this.percentage = percentage;
         this.countMin = countMin;
         this.countMax = countMax;
         this.firework = firework;
+        this.lootBonus = lootBonus;
         if(fireworkColor.size() != 3) {
             List<Integer> color = new ArrayList<>();
             color.add(0);

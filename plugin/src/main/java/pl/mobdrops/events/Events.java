@@ -36,7 +36,10 @@ public class Events implements Listener {
         }
         for(MobDrop mobDrop : mobsManager.getMobs().get(entityType.toLowerCase())) {
             int random = RandomNumber.randomInt(1, 1000000);
-            double number = mobDrop.getPercentage() * 10000 * mob_bonus;
+            double number = mobDrop.getPercentage() * 10000;
+            if(mobDrop.isLootBonus()) {
+                number *= mob_bonus;
+            }
             if(random > number) continue;
             int random_count = RandomNumber.randomInt(mobDrop.getCountMin(), mobDrop.getCountMax());
             if(mobDrop.getCustomItem().getCommand() != null) {
