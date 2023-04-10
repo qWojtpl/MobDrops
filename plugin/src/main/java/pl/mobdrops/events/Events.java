@@ -10,9 +10,11 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import pl.mobdrops.MobDrops;
 import pl.mobdrops.mobs.MobDrop;
 import pl.mobdrops.mobs.MobsManager;
@@ -54,6 +56,7 @@ public class Events implements Listener {
             }
             if(mobDrop.isFirework()) {
                 Firework fw = (Firework) entityLocation.getWorld().spawnEntity(entityLocation, EntityType.FIREWORK);
+                fw.setMetadata("no-damage", new FixedMetadataValue(plugin, true));
                 FireworkMeta fwm = fw.getFireworkMeta();
                 fwm.setPower(0);
                 Color color = Color.fromRGB(
@@ -61,6 +64,17 @@ public class Events implements Listener {
                 fwm.addEffect(FireworkEffect.builder().flicker(true).withColor(color).build());
                 fw.setFireworkMeta(fwm);
                 fw.detonate();
+            }
+        }
+    }
+
+    @EventHandler
+    public void onDamage(EntityDamageByEntityEvent event) {
+        if(event.isCancelled()) return;
+        if(event.getDamager() instanceof Firework) {
+            Firework fw = (Firework) event.getDamager();
+            if(fw.hasMetadata("no-damage")) {
+                event.setCancelled(true);
             }
         }
     }
