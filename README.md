@@ -55,7 +55,7 @@ items:
 `lore` - Lore of item<br>
 `enchantments` - List of enchantments (enchantment name:enchantment level) (get enchantments from https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/enchantments/Enchantment.html)<br>
 `unbreakable` - If set to true then item is unbreakable<br>
-`command` - Ignores all previous fields (without ID). This command will be executed if item is requested<br>
+`command` - Ignores all previous fields (without ID). This command will be executed if item is requested. Use %player% to get player.<br>
 
 </details>
 
@@ -106,4 +106,5 @@ Permission to manage: `mobdrops.manage`<br>
 `/mobdrops reload` - Reload configuration<br>
 `/mobdrops item` - List of items<br>
 `/mobdrops mobs` - List of mobs<br>
+`/mobdrops getitem <itemID>` - Get item (or execute command)<br>
 
