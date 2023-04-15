@@ -47,8 +47,14 @@ public class Commands implements CommandExecutor {
                     sender.sendMessage(prefix + "§cCannot find item: " + args[1]);
                     return true;
                 }
-                ((Player) sender).getInventory().addItem(plugin.getItemManager().getItems().get(args[1]).getItemStack());
-                sender.sendMessage(prefix + "§aDone! Check out your inventory!");
+                String cmd = plugin.getItemManager().getItems().get(args[1]).getCommand();
+                if(cmd != null) {
+                    plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(),
+                            cmd.replace("%player%", sender.getName()));
+                } else {
+                    ((Player) sender).getInventory().addItem(plugin.getItemManager().getItems().get(args[1]).getItemStack());
+                    sender.sendMessage(prefix + "§aDone! Check out your inventory!");
+                }
             } else if(args[0].equalsIgnoreCase("items")) {
                 sender.sendMessage("§7========== §cMobDrops §7==========");
                 sender.sendMessage("");

@@ -6,7 +6,6 @@ items:
     enchantments:
       - DIG_SPEED:3
     unbreakable: false
-    lootBonus: true
   "emerald":
     item: EMERALD
     name: "Super emerald!"

@@ -15,6 +15,7 @@ mobs:
       countMin: 1
       countMax: 5
       percentage: 5
+      lootBonus: true
       firework: true
       fireworkColor:
         - 0
